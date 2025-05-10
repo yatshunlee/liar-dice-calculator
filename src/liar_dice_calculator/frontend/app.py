@@ -1,0 +1,57 @@
+import streamlit as st
+from liar_dice_calculator.core import LiarDiceCalculator
+from liar_dice_calculator.visualization import plot_heatmap
+
+calculator = LiarDiceCalculator()
+
+def main():
+    st.title("Liar Dice Input")
+
+    st.write("### Input your combination of 5 dice")
+
+    dice_face_values = {
+        i + 1: "⚀⚁⚂⚃⚄⚅"[i]for i in range(6)
+    }
+    
+    lst = []
+    player_dice = {}
+    cols = st.columns(5)
+    for i in range(5):
+        dice_val = cols[i].number_input(
+            label=f"Die {i+1}",
+            min_value=1, max_value=6, value=1, step=1, key=f"dice_{i}"
+        )
+        player_dice.setdefault(dice_val, 0)
+        player_dice[dice_val] += 1
+        lst.append(dice_val)
+    
+    img_cols = st.columns(6)
+    for i, val in enumerate(lst):
+        img_cols[i+1].write(
+            f"### {dice_face_values[val]}"
+        )
+
+
+    degree_of_belief = st.slider(
+        "Degree of belief (0 - 2)", min_value=0, max_value=2, value=0, step=1
+    )
+    
+    is_wild = st.radio(
+        "Select an option:",
+        ["Wild 1", "Not Wild"],
+        horizontal=True
+    )
+    is_wild = True if is_wild == "Wild 1" else False
+
+    n_players = st.number_input(
+        "Number of players", min_value=1, max_value=10, value=2, step=1
+    )
+
+    if st.button("Generate"):
+        st.success("Generated prediction")
+        hmap = calculator.predict(n_players, is_wild, player_dice, degree_of_belief)
+        fig, _ = plot_heatmap(hmap)
+        st.pyplot(fig)
+
+if __name__ == "__main__":
+    main()
