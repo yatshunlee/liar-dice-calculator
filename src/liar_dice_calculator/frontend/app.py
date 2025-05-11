@@ -25,11 +25,15 @@ def main():
         player_dice[dice_val] += 1
         player_dice_in_lst.append(dice_val)
     
-    img_cols = st.columns(6)
-    for i, val in enumerate(player_dice_in_lst):
-        img_cols[i+1].write(
-            f"### {dice_face_values[val]}"
-        )
+    # img_cols = st.columns(6)
+    # for i, val in enumerate(player_dice_in_lst):
+    #     img_cols[i+1].write(
+    #         f"### {dice_face_values[val]}"
+    #     )
+    # display_cols = st.columns(2)
+    # display_cols[0].write("#### Your dice 你的骰子:")
+    # display_cols[1].write("#### " + "\t".join([dice_face_values[v] for v in player_dice_in_lst]))
+    # st.write("### Your dice 你的骰子:\t" + "\t".join([dice_face_values[v] for v in player_dice_in_lst]))
 
 
     degree_of_belief = st.slider(
