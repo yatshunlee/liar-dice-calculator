@@ -5,9 +5,9 @@ from liar_dice_calculator.visualization import plot_heatmap
 calculator = LiarDiceCalculator()
 
 def main():
-    st.title("Liar Dice Input")
+    st.title("Liar Dice Calculator 大話骰計算器")
 
-    st.write("### Input your combination of 5 dice")
+    st.write("### Input your combination of 5 dice 輸入5顆骰子嘅面值")
 
     dice_face_values = {
         i + 1: "⚀⚁⚂⚃⚄⚅"[i]for i in range(6)
@@ -18,7 +18,7 @@ def main():
     cols = st.columns(5)
     for i in range(5):
         dice_val = cols[i].number_input(
-            label=f"Die {i+1}",
+            label=f"Die 骰子 {i+1}",
             min_value=1, max_value=6, value=1, step=1, key=f"dice_{i}"
         )
         player_dice.setdefault(dice_val, 0)
@@ -33,22 +33,22 @@ def main():
 
 
     degree_of_belief = st.slider(
-        "Degree of belief (0 - 2)", min_value=0, max_value=2, value=0, step=1
+        "Degree of belief 上手可信度 (0 possibly lying 唔係好信 - 2 honest guy aka 老實人)", min_value=0, max_value=2, value=0, step=1
     )
     
     is_wild = st.radio(
-        "Select an option:",
-        ["Wild 1", "Not Wild"],
+        "Select an option 選擇以下一個選項:",
+        ["Wild 1 走齌", "Not Wild 齌"],
         horizontal=True
     )
-    is_wild = True if is_wild == "Wild 1" else False
+    is_wild = True if is_wild == "Wild 1 走齌" else False
 
     n_players = st.number_input(
-        "Number of players", min_value=1, max_value=10, value=2, step=1
+        "Number of players 幾多玩家 (including yourself 計埋自己)", min_value=1, max_value=10, value=2, step=1
     )
 
-    if st.button("Generate"):
-        st.success("Generated prediction")
+    if st.button("Generate Prediction 生成預測"):
+        st.success("Generated prediction successfully 成功生成預測")
         hmap = calculator.predict(n_players, is_wild, player_dice, degree_of_belief)
         fig, _ = plot_heatmap(hmap)
         st.pyplot(fig)
