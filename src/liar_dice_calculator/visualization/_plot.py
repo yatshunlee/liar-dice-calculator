@@ -13,9 +13,9 @@ def _generate_prediction_heatmap(
 
     m = len(heatmap)
     if m == 5:
-        idx = range(2, 7)
+        idx = ["⚀⚁⚂⚃⚄⚅"[i] for i in range(1, 6)] # range(2, 7)
     elif m == 6:
-        idx = range(1, 7)
+        idx = ["⚀⚁⚂⚃⚄⚅"[i] for i in range(0, 6)] # range(1, 7)
     else:
         raise Exception('Size error')
         
@@ -45,6 +45,6 @@ def plot_heatmap(
     fig, ax = plt.subplots(1, 1, figsize=(8, n))
     ax = sns.heatmap(heatmap, annot=True, fmt='.4f', linewidth=.5, ax=ax)
     ax.set_xlabel('Faces')
-    ax.set_ylabel('Probability of >= count')
-    ax.set_title('Prediction Heatmap')
+    ax.set_ylabel('Count')
+    ax.set_title('Prediction Heatmap (Probability of #Face >= Count)')
     return (fig, ax)

@@ -13,7 +13,7 @@ def main():
         i + 1: "⚀⚁⚂⚃⚄⚅"[i]for i in range(6)
     }
     
-    lst = []
+    player_dice_in_lst = []
     player_dice = {}
     cols = st.columns(5)
     for i in range(5):
@@ -23,10 +23,10 @@ def main():
         )
         player_dice.setdefault(dice_val, 0)
         player_dice[dice_val] += 1
-        lst.append(dice_val)
+        player_dice_in_lst.append(dice_val)
     
     img_cols = st.columns(6)
-    for i, val in enumerate(lst):
+    for i, val in enumerate(player_dice_in_lst):
         img_cols[i+1].write(
             f"### {dice_face_values[val]}"
         )
