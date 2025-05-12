@@ -7,7 +7,11 @@ calculator = LiarDiceCalculator()
 def main():
     st.title("Liar Dice Calculator 大話骰計算器")
 
-    st.write("### Input your combination of 5 dice 輸入5顆骰子嘅面值")
+    n_players = st.number_input(
+        "Number of players 幾多玩家 (including yourself 計埋自己)", min_value=2, max_value=10, value=2, step=1
+    )
+
+    st.write("Input your combination of 5 dice 輸入5顆骰子嘅面值")
 
     dice_face_values = {
         i + 1: "⚀⚁⚂⚃⚄⚅"[i]for i in range(6)
@@ -25,21 +29,6 @@ def main():
         player_dice[dice_val] += 1
         player_dice_in_lst.append(dice_val)
     
-    # img_cols = st.columns(6)
-    # for i, val in enumerate(player_dice_in_lst):
-    #     img_cols[i+1].write(
-    #         f"### {dice_face_values[val]}"
-    #     )
-    # display_cols = st.columns(2)
-    # display_cols[0].write("#### Your dice 你的骰子:")
-    # display_cols[1].write("#### " + "\t".join([dice_face_values[v] for v in player_dice_in_lst]))
-    # st.write("### Your dice 你的骰子:\t" + "\t".join([dice_face_values[v] for v in player_dice_in_lst]))
-
-
-    degree_of_belief = st.slider(
-        "Degree of belief 上手可信度 (0 possibly lying 唔係好信 - 2 honest guy aka 老實人)", min_value=0, max_value=2, value=0, step=1
-    )
-    
     is_wild = st.radio(
         "Select an option 選擇以下一個選項:",
         ["Wild 1 走齌", "Not Wild 齌"],
@@ -47,8 +36,8 @@ def main():
     )
     is_wild = True if is_wild == "Wild 1 走齌" else False
 
-    n_players = st.number_input(
-        "Number of players 幾多玩家 (including yourself 計埋自己)", min_value=1, max_value=10, value=2, step=1
+    degree_of_belief = st.slider(
+        "Degree of belief 上手可信度 (0 possibly lying 唔係好信 - 2 honest guy aka 老實人)", min_value=0, max_value=2, value=0, step=1
     )
 
     if st.button("Generate Prediction 生成預測"):

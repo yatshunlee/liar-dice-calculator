@@ -1,5 +1,9 @@
 # Liar-Dice-Calculator
 
+## Installation
+
+`#TODO`
+
 ## Basic Usage
 
 The following example demonstrates how to use the class `LiarDiceCalculator` to generate a predicion heatmap
