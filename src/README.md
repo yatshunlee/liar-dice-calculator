@@ -2,9 +2,20 @@
 
 ## Installation
 
-`#TODO`
+```bash
+git clone https://github.com/yourusername/liar-dice-calculator.git
+cd liar-dice-calculator
+poetry install
+```
 
 ## Basic Usage
+
+To self-host the web application: 
+
+```bash
+cd liar-dice-calculator
+streamlit run src/liar-dice-calculator/frontend/app.py
+```
 
 The following example demonstrates how to use the class `LiarDiceCalculator` to generate a predicion heatmap
 
