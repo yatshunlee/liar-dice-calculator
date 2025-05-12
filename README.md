@@ -24,3 +24,6 @@ In each round, we have to correctly guess the total number of dice showing a cer
 4. Decide if the last guy next to you is bluffing (optional) to adjust probabilities.
 5. Generate a probability heatmap
 6. Make current call and tune the degree of belief for your next call
+
+## Example
+![Description of image](./img/example_of_liar_dice.jpg)
