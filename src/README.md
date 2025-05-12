@@ -20,6 +20,7 @@ streamlit run src/liar-dice-calculator/frontend/app.py
 The following example demonstrates how to use the class `LiarDiceCalculator` to generate a predicion heatmap
 
 ```python
+from typing import List
 from liar_dice_calculator.core import LiarDiceCalculator
 
 calculator = LiarDiceCalculator()
@@ -40,7 +41,7 @@ player_dice = {
 # do you believe the call of others
 degree_of_belief = 0
 
-cummulative_probability_heatmap = calculator.predict(
+cummulative_probability_heatmap: List[List[float]] = calculator.predict(
     n_players,
     is_wild,
     player_dice,
