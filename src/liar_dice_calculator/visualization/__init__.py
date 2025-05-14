@@ -1,1 +1,1 @@
-from liar_dice_calculator.visualization._plot import plot_heatmap
+from liar_dice_calculator.visualization._plot import plot_heatmap, plot_heatmap_in_df

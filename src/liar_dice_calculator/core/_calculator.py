@@ -138,6 +138,15 @@ class LiarDiceCalculator:
         else:
             raise ValueError("degree_of_belief must be 0, 1, or 2")
 
+        # if player has 1 of each face value (2-6) => the count becomes 0 for each face value        
+        get_2_3_4_5_6 = True
+        for i in range(2, 7):
+            if player_dice.get(i, 0) != 1:
+                get_2_3_4_5_6 = False
+                break
+        if get_2_3_4_5_6:
+            player_dice = {i: 0 for i in range(2, 7)}
+
         # if 5 -> 6 for the count
         player_dice = {
             i: player_dice.get(i) if player_dice.get(i) < 5 else 6

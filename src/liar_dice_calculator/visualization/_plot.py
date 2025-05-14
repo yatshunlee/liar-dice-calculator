@@ -48,3 +48,14 @@ def plot_heatmap(
     ax.set_ylabel('Bids')
     ax.set_title('Prediction Heatmap (Probability of #Face >= Bids)')
     return (fig, ax)
+
+def plot_heatmap_in_df(
+        heatmap: List[List[float]]
+    ) -> pd.DataFrame:
+
+    heatmap = _generate_prediction_heatmap(heatmap)
+    heatmap = _prunning(heatmap)
+
+    heatmap.style.background_gradient(cmap='RdYlGn', vmin=0, vmax=1, axis=None)
+
+    return heatmap

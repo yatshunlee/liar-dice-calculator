@@ -1,6 +1,6 @@
 import streamlit as st
 from liar_dice_calculator.core import LiarDiceCalculator
-from liar_dice_calculator.visualization import plot_heatmap
+from liar_dice_calculator.visualization import plot_heatmap, plot_heatmap_in_df
 
 calculator = LiarDiceCalculator()
 
@@ -29,6 +29,12 @@ def main():
         player_dice[dice_val] += 1
         player_dice_in_lst.append(dice_val)
     
+    msg = ""
+    for i in range(1, 7):
+        if player_dice.get(i, 0) > 0:
+            msg += f"{dice_face_values[i]} x {player_dice[i]} "
+    st.write(f"Your current dice combination 你嘅骰子組合: {msg}")
+
     is_wild = st.radio(
         "Select an option 選擇以下一個選項:",
         ["Wild 1 走齌", "Not Wild 齌"],
@@ -40,11 +46,10 @@ def main():
         "Degree of belief 上手可信度 (0 possibly lying 唔係好信 - 2 honest guy aka 老實人)", min_value=0, max_value=2, value=0, step=1
     )
 
-    if st.button("Generate Prediction 生成預測"):
-        st.success("Generated prediction successfully 成功生成預測")
-        hmap = calculator.predict(n_players, is_wild, player_dice, degree_of_belief)
-        fig, _ = plot_heatmap(hmap)
-        st.pyplot(fig)
+    st.write("Probability heatmap 機率熱圖")
+    hmap = calculator.predict(n_players, is_wild, player_dice, degree_of_belief)
+    hmap = plot_heatmap_in_df(hmap)
+    st.dataframe(hmap.style.background_gradient(cmap='RdYlGn', vmin=0, vmax=1, axis=None), use_container_width=True)
 
 if __name__ == "__main__":
     main()
