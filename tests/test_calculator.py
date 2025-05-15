@@ -32,15 +32,15 @@ def test_single_player_pmf():
 
 def test_single_player_cond_pmf():
     calculator = LiarDiceCalculator()
-    dist = calculator._single_player_pmf(0.5)
-    cond_dist = calculator._single_player_cond_pmf(dist, 2)
+    dist = calculator._single_player_pmf(1 / 3)
+    cond_dist = calculator._single_player_cond_pmf(dist, 1)
     assert cond_dist[0] == 0.0
-    assert cond_dist[1] == 0.0
-    assert cond_dist[2] == pytest.approx(0.25, rel=1e-2)
-    assert cond_dist[3] == pytest.approx(0.25, rel=1e-2)
-    assert cond_dist[4] == pytest.approx(0.25, rel=1e-2)
+    assert cond_dist[1] == pytest.approx(0.3791, rel=1e-2)
+    assert cond_dist[2] == pytest.approx(0.3791, rel=1e-2)
+    assert cond_dist[3] == pytest.approx(0.1896, rel=1e-2)
+    assert cond_dist[4] == pytest.approx(0.0474, rel=1e-2)
     assert cond_dist[5] == 0.0
-    assert cond_dist[6] == pytest.approx(0.25, rel=1e-2)
+    assert cond_dist[6] == pytest.approx(0.0047, rel=1e-2)
     with pytest.raises(ValueError):
         calculator._single_player_cond_pmf(dist, -1)
     with pytest.raises(ValueError):
