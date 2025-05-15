@@ -8,8 +8,11 @@ to win and, ultimately, drink less alcohol in the night.
 
 Liar’s Dice is a popular bluffing dice game often played in Hong Kong bars and social gatherings. The game combines chance, psychology, and drinking fun.
 Each player has a cup (dice shaker) containing 5 dice.
-In each round, we have to correctly guess the total number of dice showing a certain face value among all players, or to catch others bluffing.
-We don't lose any dice in the game, and instead, we drink.
+In each round, we take turns to make calls and have to correctly guess the total number of dice showing a certain face value among all players, or to catch others bluffing.
+
+Some special rules:
+- We don't lose any dice in the game, and instead, we drink.
+- Getting a combo of 2, 3, 4, 5, 6 (each 1) makes the count in our hand equal to 0. Instead, each of the face value = 0 for our dice.
 
 ## Features
 - Calculate the probability that a bid is valid given the number of dice and faces.
